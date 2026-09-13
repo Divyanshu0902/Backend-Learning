@@ -1,0 +1,22 @@
+{
+  "name": "generateQRcode",
+  "version": "1.0.0",
+  "description": "Create QR Codes",
+  "keywords": [
+    "qrCode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://Divyanshu0902/qrCode"
+  },
+  "license": "MIT",
+  "author": "Divyanshu Kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node qrCode.js"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}
