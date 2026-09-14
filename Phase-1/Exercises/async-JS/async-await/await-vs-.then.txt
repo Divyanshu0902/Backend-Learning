@@ -1,0 +1,63 @@
+You might now be thinking:
+
+"If await is basically .then() but nicer syntax, why did JavaScript need await at all?"
+
+That's exactly the right next question.
+
+The answer is not merely "because it's shorter."
+
+Consider this:
+
+getUser()
+    .then((user) => {
+        return getPosts(user.id);
+    })
+    .then((posts) => {
+        return getComments(posts);
+    })
+    .then((comments) => {
+        console.log(comments);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+Versus:
+
+try {
+    const user = await getUser();
+    const posts = await getPosts(user.id);
+    const comments = await getComments(posts);
+
+    console.log(comments);
+} catch (error) {
+    console.error(error);
+}
+
+The second version makes the logical sequence much easier to read:
+
+get user
+   ↓
+get posts
+   ↓
+get comments
+   ↓
+use comments
+
+without nesting/constructing a chain of callbacks.
+
+That's one of the major reasons async/await became so important in modern backend JavaScript.
+
+One thing I want you to notice
+
+There is an apparent paradox here:
+
+const user = await getUser();
+
+looks synchronous.
+
+But getUser() can still be asynchronous.
+
+That's precisely the abstraction await gives you:
+
+It lets you write asynchronous control flow in a sequential-looking form without turning the underlying operation into a synchronous one.
